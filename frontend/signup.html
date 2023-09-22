@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <section class="form h-100 d-flex align-items-center justify-content-center">
+    <div class="container text-center">
+        <div class="logo">
+            <img src="static/img/logo.svg" alt="logo" width="171" height="70">
+        </div>
+        <div class="form-content row " >
+            <h1 class="form-title ">
+                Вход
+            </h1>
+            <form class="position-relative">
+                <input type="text" placeholder="ФИО" class="fullname rounded-1 w-100 ">
+                <img src="static/img/login-signup/person.svg" alt="img-fullname" class="img-fullname position-absolute z-1">
+                <input type="text" placeholder="Электронная почта" class="email rounded-1 w-100 ">
+                    <img src="static/img/login-signup/mail.svg" alt="img-email" class="img-email position-absolute z-1">
+                <input type="password" placeholder="Пароль" class="password  rounded-1 w-100 text-secondary">
+                    <img src="static/img/login-signup/lock.svg" alt="img-lock" class="img-lock position-absolute z-1">
+                <input type="password" placeholder="Подтверждение пароля" class="rep-password  rounded-1 w-100 text-secondary">
+                    <img src="static/img/login-signup/lock.svg" alt="img-lock" class="img-rep-password  position-absolute z-1">
+                
+                <button class="button-signup btn btn-primary w-100">Войти</button>
+            </form>
+            <div class="form-link text-start">Уже есть аккаунт?
+                <a href="/#/signup">Войдите в систему</a>
+            </div>
+        </div>
+      </div>
+    </section> 
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
