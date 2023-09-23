@@ -6,3 +6,6 @@
     font-family: "Roboto500";
     src: url(../static/fonts/Roboto-Medium500.ttf) format("woff")
 }
+html,body{
+    font-family: "Roboto400";
+}
