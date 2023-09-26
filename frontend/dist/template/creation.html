@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/form.css">
+    <title>Document</title>
 </head>
 <body>
     <section class="container-fluid m-0 p-0">
         <div class="d-flex">
-    <div class="saidbar d-flex flex-column flex-shrink-0  bg-white border-end" style="width: 219px; height: 100vh">
+    <div class=" d-flex flex-column flex-shrink-0  bg-white border-end" style="width: 219px; height: 100vh">
         <a href="/" class="logo link-dark text-decoration-none border-bottom">
           <img src="static/img/logo.svg" alt="logo" width="98" height="40">
         </a>
@@ -68,50 +67,35 @@
       </div>
       
         <div class="content-categoty flex-shrink-0  bg-white m-0" style="width: 80%;">
-          <div class="content-title">Доходы</div>
+          <div class="content-title">Создание дохода/расхода</div>
           <div class="box">
-            <section class="form h-100 d-flex align-items-center justify-content-center">
-                <div class="container text-center">
-                    <div class="logo">
-                        <img src="static/img/logo.svg" alt="logo" width="171" height="70">
-                    </div>
-                    <div class="form-content row " >
-                        <h1 class="form-title ">
-                            Вход
-                        </h1>
-                        <form class="position-relative">
-                            <input type="text" placeholder="Электронная почта" class="email rounded-1 w-100 ">
-                                <img src="static/img/login-signup/mail.svg" alt="img-email" class="img-email position-absolute z-1">
-                            <input type="password" placeholder="Пароль" class="password  rounded-1 w-100 text-secondary">
-                                <img src="static/img/login-signup/lock.svg" alt="img-lock" class="img-lock position-absolute z-1">
-                            
-                            <label class="remember col-12 d-flex align-items-center justify-content-start" >
-                                <input type="checkbox" required="" class="">
-                                Запомнить меня
-                            </label>
-                            <button class="button-signup btn btn-primary w-100">Войти</button>
-                        </form>
-                        <div class="form-link text-start">Ещё нет аккаунта? 
-                            <a href="/#/signup">Пройдите регистрацию</a>
-                        </div>
-                    </div>
-                  </div>
-                </section> 
+            <form action="" class="form-category-use">
+                <div class="row">
+                    <input type="text" class=" col-8 py-1 rounded-1 mb-3" placeholder="Тип...">
+                </div>
+                <div class="row">
+                    <input type="text" class=" col-8 py-1 rounded-1 mb-3" placeholder="Категория...">
+                </div>
+                <div class="row">
+                    <input type="text" class=" col-8 py-1 rounded-1 mb-3" placeholder="Сумма в $...">
+                </div>
+                <div class="row">
+                    <input type="text" class=" col-8 py-1 rounded-1 mb-3" placeholder="Дата...">
+                </div>
+                <div class="row">
+                    <input type="text" class=" col-8 py-1 rounded-1 mb-3" placeholder="Комментарий...">
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-success px-3">Создать</button>
+                    <button class="btn btn-danger px-3">Отмена</button>
+                </div>
+            </form>
+            </div>
           </div>
         </div>
     </div>
       
     </section>
-    <div class="popap">
-      <div class="popap-content">
-        <div class="popap-title">Вы действительно хотите удалить категорию? Связанные доходы будут удалены навсегда.</div>
-        <div class="buttons d-flex justify-content-center">
-          <button class="btn btn-success px-3 py-2 me-3">Создать доход</button>
-          <button class="btn btn-danger px-3 py-2">Создать расход</button>
-      </div>
-      </div>
-    </div>
-    
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
