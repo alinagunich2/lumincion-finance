@@ -1,4 +1,4 @@
-// import {Form} from './components/form.js'
+import {Form} from './components/form.js'
 // import {Choice} from './components/choice.js'
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
@@ -17,9 +17,18 @@ export class Router{
                 route: '#/',
                 title:'Вход',
                 template:'template/login.html',
-                styles:'styles/form.css',
+                styles:'styles/login.css',
                 load:()=>{
-                    // new Form('form-use')
+                    new Form('login')
+                }
+             },
+             {
+                route: '#/signup',
+                title:'Создайте аккаунт',
+                template:'template/signup.html',
+                styles:'styles/signup.css',
+                load:()=>{
+                    new Form('signup')
                 }
              },
              {
