@@ -17,7 +17,7 @@ margin-bottom: 20px;
     margin-bottom: 60px;
 }
 input{
-    border: 1px solid rgba(206, 212, 218, 1) !important;
+    border: 1px solid rgba(206, 212, 218, 1) ;
 padding: 7px 0 7px 51px ;
 margin-bottom: 10px !important  ;
 display: block;

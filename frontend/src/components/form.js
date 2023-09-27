@@ -4,7 +4,6 @@ export  class Form  {
 
     constructor(page){
         this.page=page;
-        this.agreeElement=null;
         this.processElement= null;
     
             const accessToken = localStorage.getItem(Auth.accessTokenKey)
@@ -33,17 +32,17 @@ export  class Form  {
         if(this.page==='signup'){
             this.fields.unshift(
                 {
-                    name:"name",
-                    id: 'name',
+                    name:"fullname",
+                    id: 'fullname',
                     element: null,
                     regex: /^[А-Я][а-я]+\s*$/,
                     valid: false,
                 },
                 {
-                    name:'lastName',
-                    id:'last-name',
+                    name:'rep-password',
+                    id:'rep-password',
                     element: null,
-                    regex: /^[А-Я][а-я]+\s*$/,
+                    regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
                     valid: false,
                 },
             )
@@ -59,84 +58,102 @@ export  class Form  {
             })
 
             this.processElement = document.getElementById('process')
-            this.processElement.onclick=function(){
-                that.processForm()
+            // this.processElement.onclick=function(){
+            //     that.processForm()
+            // }
+
+            if(this.page==='signup'){
+                
             }
-
-            // if(this.page==='signup'){
-            //     this.agreeElement = document.getElementById('agree');
-            //     this.agreeElement.onchange = function(){
-            //         that.validateForm()
-            //     }
-
-        
     
    
     }
+    validateField(field,element){
+        if(!element.value || !element.value.match(field.regex)){ 
+            element.style.borderColor = 'red'
+            field.valid=false
+        }else{
+            element.removeAttribute('style')
+            field.valid=true
+        }
+        if(this.page==='signup'){
+            const repPassword = document.getElementById('rep-password')
+            if(document.getElementById('password').value === repPassword.value){
+                this.processElement.removeAttribute('disabled')
+                repPassword.removeAttribute('style')
+            }else{
+                repPassword.style.borderColor = 'red'
+                this.processElement.setAttribute('disabled', 'disabled')
+                return
+            }
+            
+        }
+        this.validateForm()
+    }
     validateForm(){
         const validForm = this.fields.every(itm => itm.valid)
-        const isValid = this.agreeElement ? this.agreeElement.checked && validForm : validForm
-        if(isValid){
+        
+        if(validForm){
             this.processElement.removeAttribute('disabled')
         }else{
             this.processElement.setAttribute('disabled', 'disabled')
         }
-        return isValid
+        return validForm
     }
-    async processForm(){
+    // async processForm(){
 
-        if(this.validateForm()){
-            const email = this.fields.find(itm=>itm.name==='email').element.value
-            const password = this.fields.find(itm=>itm.name==='password').element.value
+    //     if(this.validateForm()){
+    //         const email = this.fields.find(itm=>itm.name==='email').element.value
+    //         const password = this.fields.find(itm=>itm.name==='password').element.value
             
-            if(this.page=='signup'){
+    //         if(this.page=='signup'){
 
-                try{
-                   const result = await CustomHttp.request(config.host+'/signup','POST',{
-                        name:this.fields.find(itm=>itm.name==='name').element.value,
-                        lastName:this.fields.find(itm=>itm.name==='lastName').element.value,
-                        email:email,
-                        password:password,
-                    })
+    //             try{
+    //                const result = await CustomHttp.request(config.host+'/signup','POST',{
+    //                     name:this.fields.find(itm=>itm.name==='name').element.value,
+    //                     lastName:this.fields.find(itm=>itm.name==='lastName').element.value,
+    //                     email:email,
+    //                     password:password,
+    //                 })
 
-                    if(result){
-                        if(result.error||!result.user){
-                            throw new Error (result.message)
-                        }
-                    }
+    //                 if(result){
+    //                     if(result.error||!result.user){
+    //                         throw new Error (result.message)
+    //                     }
+    //                 }
 
-                }catch(e){
-                    return console.log(e)
-                }
-            }
-                try{
-                    const result = await CustomHttp.request(config.host+'/login','POST',{
-                         email:email,
-                         password:password,
-                     })
+    //             }catch(e){
+    //                 return console.log(e)
+    //             }
+    //         }
+    //             try{
+    //                 const result = await CustomHttp.request(config.host+'/login','POST',{
+    //                      email:email,
+    //                      password:password,
+    //                  })
 
-                     if(result){
-                         if(result.error||!result.accessToken || !result.refreshToken||!result.fullName||!result.userId){
-                             throw new Error (result.message)
-                         }
-                         Auth.setTokens(result.accessToken,result.refreshToken)
-                         Auth.setUserInfo({
-                            fullName: result.fullName,
-                            userId: result.userId
-                         })
-                         location.href='#/choice'
-                     }
+    //                  if(result){
+    //                      if(result.error||!result.accessToken || !result.refreshToken||!result.fullName||!result.userId){
+    //                          throw new Error (result.message)
+    //                      }
+    //                      Auth.setTokens(result.accessToken,result.refreshToken)
+    //                      Auth.setUserInfo({
+    //                         fullName: result.fullName,
+    //                         userId: result.userId
+    //                      })
+    //                      location.href='#/choice'
+    //                  }
 
-                 }catch(e){
-                      console.log(e)
-            }
+    //              }catch(e){
+    //                   console.log(e)
+    //         }
 
-            // let paramString = ''
-            // this.fields.forEach(itm=>{
-            //     paramString += (!paramString ? '?':'&') + itm.name + '=' + itm.element.value
-            // })
+    //         // let paramString = ''
+    //         // this.fields.forEach(itm=>{
+    //         //     paramString += (!paramString ? '?':'&') + itm.name + '=' + itm.element.value
+    //         // })
 
-            // location.href='#/choice'+paramString
-        }
-    }
+    //         // location.href='#/choice'+paramString
+    //     }
+    // }
 }
