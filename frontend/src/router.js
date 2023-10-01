@@ -1,4 +1,6 @@
 import {Form} from './components/form.js'
+import {MainErnings} from './components/main-ernings-comsumption.js'
+import { Creation } from "../src/components/creation.js";
 // import {Choice} from './components/choice.js'
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
@@ -41,12 +43,21 @@ export class Router{
                 }
              },
              {
-                route: '#/creation',
+                route: '#/creation-ernings',
                 title:'creation',
                 template:'template/creation.html',
-                styles:'',
+                styles:'styles/creation.css',
                 load:()=>{
-                   
+                    new Creation('create-ern')
+                }
+             },
+             {
+                route: '#/creation-comsumption',
+                title:'creation',
+                template:'template/creation.html',
+                styles:'styles/creation.css',
+                load:()=>{
+                    new Creation('create-com')
                 }
              },
              {
@@ -64,7 +75,7 @@ export class Router{
                 template:'template/main-ernings-comsumption.html',
                 styles:'styles/main-ernings-comsumption.css',
                 load:()=>{
-               
+                    new MainErnings()
                 }
              }
         ]

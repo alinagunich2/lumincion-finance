@@ -75,12 +75,12 @@ html,body{
 
 .btn-toggle::before{
     position: absolute;
-    content: url(../static/img/ernings-comsumption/arrow-dark.svg) !important;
+    content: url(../img/ernings-comsumption/arrow-dark.svg) !important;
     left: 152px;
     top: 13px;
 }
 .btn-toggle[aria-expanded="true"]::before {
-    content: url(../static/img/ernings-comsumption/arrow-white.svg) !important;
+    content: url(../img/ernings-comsumption/arrow-white.svg) !important;
 }
 /* -------------------------------------------------------------------------------------------------- */
 

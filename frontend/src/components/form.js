@@ -1,5 +1,6 @@
 import {Auth} from "../services/auth.js"
-
+import { CustomHttp } from "../services/custon-http.js";
+import config from "../../config/config.js"
 export  class Form  {
 
     constructor(page){
@@ -8,7 +9,7 @@ export  class Form  {
     
             const accessToken = localStorage.getItem(Auth.accessTokenKey)
             // if(accessToken){
-            //     location.href='#/main-ernings-comsumption';
+            //     location.href='#/';
             //     return
             // }
     
@@ -35,7 +36,7 @@ export  class Form  {
                     name:"fullname",
                     id: 'fullname',
                     element: null,
-                    regex: /^[А-Я][а-я]+\s*$/,
+                    regex: /^([А-Я][а-я]*\s+)+[А-Я][а-я]*\s*$/,
                     valid: false,
                 },
                 {
@@ -58,9 +59,9 @@ export  class Form  {
             })
 
             this.processElement = document.getElementById('process')
-            // this.processElement.onclick=function(){
-            //     that.processForm()
-            // }
+            this.processElement.onclick=function(){
+                that.processForm()
+            }
 
             if(this.page==='signup'){
                 
@@ -100,60 +101,53 @@ export  class Form  {
         }
         return validForm
     }
-    // async processForm(){
+    
+async processForm(){
+    if(this.validateForm()){
+        const email = this.fields.find(itm=>itm.name==='email').element.value
+        const password = this.fields.find(itm=>itm.name==='password').element.value
+        if(this.page === 'signup'){
+            try{
 
-    //     if(this.validateForm()){
-    //         const email = this.fields.find(itm=>itm.name==='email').element.value
-    //         const password = this.fields.find(itm=>itm.name==='password').element.value
+                const result = await CustomHttp.request(config.host+'/signup', "POST", {
+                        name: this.fields.find(itm => itm.name === 'fullname').element.value.split(' ')[1],
+                        lastName: this.fields.find(itm => itm.name === 'fullname').element.value.split(' ')[0],
+                        email: email,
+                        password: password,
+                        passwordRepeat:this.fields.find(itm => itm.name === 'rep-password').element.value,
+                    })
+                    
+                if(result){
+                    if(!result.user || result.error){
+                        throw new Error(result.message)
+                    }
+                }
+            }catch(e){
+               return console.log(e)
+            }
             
-    //         if(this.page=='signup'){
+                }
+                    try{
 
-    //             try{
-    //                const result = await CustomHttp.request(config.host+'/signup','POST',{
-    //                     name:this.fields.find(itm=>itm.name==='name').element.value,
-    //                     lastName:this.fields.find(itm=>itm.name==='lastName').element.value,
-    //                     email:email,
-    //                     password:password,
-    //                 })
-
-    //                 if(result){
-    //                     if(result.error||!result.user){
-    //                         throw new Error (result.message)
-    //                     }
-    //                 }
-
-    //             }catch(e){
-    //                 return console.log(e)
-    //             }
-    //         }
-    //             try{
-    //                 const result = await CustomHttp.request(config.host+'/login','POST',{
-    //                      email:email,
-    //                      password:password,
-    //                  })
-
-    //                  if(result){
-    //                      if(result.error||!result.accessToken || !result.refreshToken||!result.fullName||!result.userId){
-    //                          throw new Error (result.message)
-    //                      }
-    //                      Auth.setTokens(result.accessToken,result.refreshToken)
-    //                      Auth.setUserInfo({
-    //                         fullName: result.fullName,
-    //                         userId: result.userId
-    //                      })
-    //                      location.href='#/choice'
-    //                  }
-
-    //              }catch(e){
-    //                   console.log(e)
-    //         }
-
-    //         // let paramString = ''
-    //         // this.fields.forEach(itm=>{
-    //         //     paramString += (!paramString ? '?':'&') + itm.name + '=' + itm.element.value
-    //         // })
-
-    //         // location.href='#/choice'+paramString
-    //     }
-    // }
+                        const result = await CustomHttp.request(config.host+'/login', "POST", {
+                                email: email,
+                                password: password,
+                                rememberMe: false,
+                            })
+                            
+                        if(result){
+                            if(!result.tokens.accessToken || !result.tokens.refreshToken 
+                                ||!result.user.name || !result.user.lastName || !result.user.id){
+                                throw new Error(result.message)
+                            }
+                            
+                            Auth.setTokens(result.tokens.accessToken,result.tokens.refreshToken)
+                            location.href = '#/main-ernings-comsumption'
+                        }
+                    }catch(e){
+                        console.log(e)
+                    }
+             }
+    }
 }
+
