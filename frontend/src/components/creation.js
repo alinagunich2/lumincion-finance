@@ -4,15 +4,21 @@ import config from "../../config/config.js"
 export class Creation {
     static idItm = null
     
-    constructor(page){
+    constructor(page,statys){
         this.page=page;
+        this.statys = statys
+
         this.categories =null
         this.input = document.getElementsByTagName('input')
         
         if(this.page === 'create-ern'){
             this.createErn()
-        }else{
+        }else if (this.page === 'create-com'){
             this.createCom()
+        }else if(this.page === 'edit-ernings'){
+            this.editErn()
+        }else{
+            this.editCom()
         }
         this.cancel()
         let that = this
@@ -114,7 +120,7 @@ export class Creation {
 
     async savingData(type){
         try{
-            const result = await CustomHttp.request(config.host+'/categories/'+type,'POST',{
+            const result = await CustomHttp.request(config.host+'/operations','POST',{
                 type: type,
                 amount: this.input[2].value,
                 date: this.input[3].value,
@@ -131,4 +137,14 @@ export class Creation {
     }
 
 
-}}
+}
+
+editErn(){
+    // console.log( this.page)
+    // console.log( this.editId)
+}
+editCom(){
+    // console.log( this.page)
+    // console.log( this.editId)
+}
+}

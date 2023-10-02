@@ -7,13 +7,14 @@ import { Creation } from "../src/components/creation.js";
 // import {GetResult} from './components/get-result.js'
 // import {Auth} from "./services/auth.js"
 export class Router{
+    static id = null
     constructor(){
         this.boxElement=document.getElementById('box')
         this.stylesElement=document.getElementById('styles')
         this.titleElement=document.getElementById('page-title')
         // this.profileElement=document.getElementById('profile')
         // this.profileFullNameElement=document.getElementById('profile-full-name')
-
+        let that = this
         this.routes=[
              {
                 route: '#/',
@@ -58,6 +59,24 @@ export class Router{
                 styles:'styles/creation.css',
                 load:()=>{
                     new Creation('create-com')
+                }
+             },
+             {
+                route: '#/edit-ernings-11',
+                title:'creation',
+                template:'template/creation.html',
+                styles:'styles/creation.css',
+                load:()=>{
+                    new Creation('edit-ernings','Доход')
+                }
+             },
+             {
+                route: '#/edit-comsumption-11',
+                title:'creation',
+                template:'template/creation.html',
+                styles:'styles/creation.css',
+                load:()=>{
+                    new Creation('edit-comsumption','Расход')
                 }
              },
              {
