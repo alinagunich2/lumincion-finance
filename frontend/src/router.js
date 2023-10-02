@@ -62,21 +62,21 @@ export class Router{
                 }
              },
              {
-                route: '#/edit-ernings-11',
+                route: '#/edit-ernings',
                 title:'creation',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('edit-ernings','Доход')
+                    new Creation('edit-ernings')
                 }
              },
              {
-                route: '#/edit-comsumption-11',
+                route: '#/edit-comsumption',
                 title:'creation',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('edit-comsumption','Расход')
+                    new Creation('edit-comsumption')
                 }
              },
              {

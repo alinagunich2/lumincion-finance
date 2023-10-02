@@ -4,12 +4,14 @@ import config from "../../config/config.js"
 export class Creation {
     static idItm = null
     
-    constructor(page,statys){
+    constructor(page){
         this.page=page;
-        this.statys = statys
 
         this.categories =null
+        this.categor = null
+
         this.input = document.getElementsByTagName('input')
+        this.id = document.location.href.split('=')[1]
         
         if(this.page === 'create-ern'){
             this.createErn()
@@ -17,10 +19,13 @@ export class Creation {
             this.createCom()
         }else if(this.page === 'edit-ernings'){
             this.editErn()
+            this.showEdit()
         }else{
             this.editCom()
+            this.showEdit()
         }
         this.cancel()
+
         let that = this
         for(let i = 0;i<this.input.length;i++){
             this.input[i].onchange=function(){
@@ -35,7 +40,7 @@ export class Creation {
         this.itmType('income')
         let that = this
         create.onclick = function () {
-            that.savingData('income')
+            that.savingData('income','/operations','POST')
         }
     }
     createCom(){
@@ -43,7 +48,7 @@ export class Creation {
         this.itmType('expense')
         let that = this
         create.onclick = function () {
-            that.savingData('expense')
+            that.savingData('expense','/operations','POST')
         }
     }
     showTitle(text, type ){
@@ -118,9 +123,9 @@ export class Creation {
 
     }
 
-    async savingData(type){
+    async savingData(type,url,metod){
         try{
-            const result = await CustomHttp.request(config.host+'/operations','POST',{
+            const result = await CustomHttp.request(config.host+url,metod,{
                 type: type,
                 amount: this.input[2].value,
                 date: this.input[3].value,
@@ -139,12 +144,45 @@ export class Creation {
 
 }
 
-editErn(){
-    // console.log( this.page)
-    // console.log( this.editId)
-}
-editCom(){
-    // console.log( this.page)
-    // console.log( this.editId)
-}
+
+
+   async showEdit(){
+        let id = document.location.href.split('=')[1]
+
+        try{
+            const result = await CustomHttp.request(config.host+'/operations/'+id, 'GET')
+                
+            if(result){
+                if(result.error){
+                    throw new Error(result.message)
+                }
+                this.categor = result
+                this.input[1].setAttribute('disabled', 'disabled')
+                this.input[1].value = this.categor.category
+                this.input[2].value = this.categor.amount + '$'
+                this.input[3].value = this.categor.date
+                this.input[4].value = this.categor.comment
+                console.log(this.categor)
+            }
+        }catch(e){
+            console.log(e)
+        }
+        console.log(id)
+    }
+    editErn(){
+        let that = this
+        this.showTitle('Редактирование дохода', 'доход')
+        create.onclick = function () {
+            that.savingData('income','/operations/'+that.id,'PUT')
+        }
+    }
+    editCom(){
+        this.showTitle('Редактирование расхода','расход')
+        create.onclick = function () {
+            that.savingData('expense','/operations/'+that.id,'PUT')
+        }
+    }
+ 
+
+
 }
