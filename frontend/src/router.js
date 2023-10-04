@@ -1,6 +1,8 @@
 import {Form} from './components/form.js'
 import {MainErnings} from './components/main-ernings-comsumption.js'
 import { Creation } from "../src/components/creation.js";
+import { Sidebar } from "../src/components/sidebar.js";
+import { Ernings } from "../src/components/ernings.js";
 // import {Choice} from './components/choice.js'
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
@@ -32,6 +34,25 @@ export class Router{
                 styles:'styles/signup.css',
                 load:()=>{
                     new Form('signup')
+                }
+             },
+             {
+                route: '#/main',
+                title:'Главная',
+                template:'template/main.html',
+                styles:'styles/main-ernings-comsumption.css',
+                load:()=>{
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/main-ernings-comsumption',
+                title:'main-ernings-comsumption',
+                template:'template/main-ernings-comsumption.html',
+                styles:'styles/main-ernings-comsumption.css',
+                load:()=>{
+                    new MainErnings(),
+                    new Sidebar('.tabs')
                 }
              },
              {
@@ -80,23 +101,16 @@ export class Router{
                 }
              },
              {
-                route: '#/ernings-comsumption',
-                title:'ernings-comsumption',
+                route: '#/ernings',
+                title:'ernings',
                 template:'template/ernings-comsumption.html',
                 styles:'styles/ernings-comsumption.css',
                 load:()=>{
-                   
+                    new Ernings(),
+                    new Sidebar('.tabs')
                 }
              },
-             {
-                route: '#/main-ernings-comsumption',
-                title:'main-ernings-comsumption',
-                template:'template/main-ernings-comsumption.html',
-                styles:'styles/main-ernings-comsumption.css',
-                load:()=>{
-                    new MainErnings()
-                }
-             }
+
         ]
     }
     async openRoute(){

@@ -142,7 +142,7 @@ async processForm(){
                             }
                             
                             Auth.setTokens(result.tokens.accessToken,result.tokens.refreshToken)
-                            location.href = '#/main-ernings-comsumption'
+                            location.href = '#/main'
                         }
                     }catch(e){
                         console.log(e)

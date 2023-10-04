@@ -9,10 +9,12 @@ export class MainErnings{
      constructor(){
         this.data =null
 
-        this.dateFromTo = new Date().getFullYear().toString()+'-'+new Date().getMonth().toString()+'-'+new Date().getDate().toString()+'&dateTo='+new Date().getFullYear().toString()+'-'+new Date().getMonth().toString()+'-'+new Date().getDate().toString()
-        this.dateTo='&dateTo='+new Date().getFullYear().toString()+'-'+new Date().getMonth().toString()+'-'+new Date().getDate().toString()
+        this.Month = new Date().getMonth()+1
+
+        this.dateFromTo = new Date().getFullYear().toString()+'-'+this.Month.toString()+'-'+new Date().getDate().toString()+'&dateTo='+new Date().getFullYear().toString()+'-'+this.Month.toString()+'-'+new Date().getDate().toString()
+        this.dateTo='&dateTo='+new Date().getFullYear().toString()+'-'+this.Month.toString()+'-'+new Date().getDate().toString()
         this.nowYear = new Date().getFullYear().toString()
-        this.nowMonth = new Date().getMonth().toString()
+        this.nowMonth = this.Month.toString()
         this.nowDay = new Date().getDate().toString()
         this.int()
         this.sorting()

@@ -16,8 +16,8 @@
         <a href="/" class="logo link-dark text-decoration-none border-bottom">
           <img src="img/logo.svg" alt="logo" width="98" height="40">
         </a>
-        <ul class="nav-saidbar list-unstyled mb-auto ">
-          <li class="nav-saidbar-item d-flex ">
+        <ul class="nav-saidbar list-unstyled mb-auto tabs" id="tabs">
+          <li class="nav-saidbar-item d-flex tabs__btn activ" id="main">
             <div class="icon-main me-2">
               <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 12.3964V5.89641H2.5V12.3964C2.5 12.6726 2.72386 12.8964 3 12.8964H12C12.2761 12.8964 12.5 12.6726 12.5 12.3964V5.89641H13.5V12.3964C13.5 13.2248 12.8284 13.8964 12 13.8964H3C2.17157 13.8964 1.5 13.2248 1.5 12.3964Z" fill="#052C65"/>
@@ -26,8 +26,9 @@
                 </svg>                
             </div>
             <div class="">Главная</div>
+            <div class="tabs__pane"></div>
           </li>
-          <li class="nav-saidbar-item d-flex activ">
+          <li class="nav-saidbar-item d-flex tabs__btn" id="main-sek">
             <div class="icon-ern-com me-2">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11 15C13.2091 15 15 13.2091 15 11C15 8.79086 13.2091 7 11 7C8.79086 7 7 8.79086 7 11C7 13.2091 8.79086 15 11 15ZM16 11C16 13.7614 13.7614 16 11 16C8.23858 16 6 13.7614 6 11C6 8.23858 8.23858 6 11 6C13.7614 6 16 8.23858 16 11Z" fill="#052C65"/>
@@ -37,17 +38,18 @@
                 </svg>                
             </div>
             <div class="">Доходы & Расходы</div>
+            <div class="tabs__pane"></div>
           </li>
           <li>
             <ul class=" nav nav-pills d-flex flex-column list-unstyled " >
               <li class=" m-0 position-relative">
-                <div class="align-items-center  collapsed m-0  btn-toggle nav-saidbar-catiger activ-catiger " data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                <div class="align-items-center   m-0  tabs__btn btn-toggle nav-saidbar-catiger " id="category">
                   Категории
                 </div>
-                <div class="collapse show" id="home-collapse">
+                <div class="tabs__pane " >
                   <ul class="catiger-items btn-toggle-nav list-unstyled fw-normal small">
-                    <li><a href="#" class="d-block  text-decoration-none catiger-item  m-0 activ-ernings">Доходы</a></li>
-                    <li><a href="#" class="d-block text-decoration-none catiger-item m-0 noactive-comsumotion ">Расходы</a></li>
+                    <li><div  class="d-block  text-decoration-none catiger-item  m-0 activ-comsumotion" id="ern">Доходы</div></li>
+                    <li><div class="d-block text-decoration-none catiger-item m-0 noactive-comsumotion " id="com">Расходы</div></li>
                   </ul>
                 </div>
               </li>

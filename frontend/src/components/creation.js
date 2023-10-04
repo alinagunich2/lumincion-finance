@@ -16,7 +16,7 @@ export class Creation {
         this.input = document.getElementsByTagName('input')
         this.itmType = document.getElementsByClassName('dropdown-item')
         this.id = document.location.href.split('=')[1]
-        this.test()
+
         
         if(this.page === 'create-ern'){
             this.createErn()
@@ -46,8 +46,7 @@ export class Creation {
         this.itmTyp('income')
         let that = this
         create.onclick = function () {
-            
-            that.savingData(that.itmType[1].id,'income','/operations','POST')
+            that.savingData(that.saveCategor(that.input[1].value),'income','/operations','POST')
         }
     }
     createCom(){
@@ -56,7 +55,7 @@ export class Creation {
         let that = this
         create.onclick = function () {
             that.idItm=that.itmType[1].id
-            that.savingData(that.itmType[1].id,'expense','/operations','POST')
+            that.savingData(that.saveCategor(that.input[1].value),'expense','/operations','POST')
         }
     }
     async itmTyp(data){
@@ -167,7 +166,7 @@ export class Creation {
                 this.categor = result
                 this.input[1].setAttribute('disabled', 'disabled')
                 this.input[1].value = this.categor.category
-                this.input[2].value = this.categor.amount + '$'
+                this.input[2].value = this.categor.amount 
                 this.input[3].value = this.categor.date
                 this.input[4].value = this.categor.comment
                 console.log(this.categor)
@@ -177,9 +176,9 @@ export class Creation {
         }
         console.log(id)
     }
-    editCategor(){
+   
+    saveCategor(type){     
         let idcategor=null
-        let type = this.routeParams.type
         for(let i = 0;i<this.categories.length;i++){
             if(this.categories[i].title===type){
                 idcategor= this.categories[i].id
@@ -194,7 +193,7 @@ export class Creation {
         this.itmTyp('income')
     
         create.onclick = function () {
-            that.savingData(that.editCategor(),'income','/operations/'+that.id,'PUT')
+            that.savingData(that.saveCategor(that.routeParams.type),'income','/operations/'+that.id,'PUT')
         }
     }
     editCom(){
@@ -203,21 +202,8 @@ export class Creation {
         this.itmTyp('expense')
 
         create.onclick = function () {
-            that.savingData(that.editCategor(),'expense','/operations/'+that.id,'PUT')
+            that.savingData(that.saveCategor(that.routeParams.type),'expense','/operations/'+that.id,'PUT')
         }
     }
  
-
-test(){
-   let itmType = document.getElementById('dropdownMenuButton1')
- 
-    itmType.addEventListener('change', function(e){
-        // if(e.target){
-        //     that.idDelite = e.target.getAttribute('value')
-        //     console.log(that.idDelite)
-        //     that.popapShow()
-        // }
-        console.log(e.target.itmType)
-    })
-}
 }

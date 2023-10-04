@@ -17,5 +17,6 @@ class App{
     handleRouteChanging(){
         this.router.openRoute()
     }
+    
 }
 (new App())
