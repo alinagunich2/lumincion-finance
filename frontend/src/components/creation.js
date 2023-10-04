@@ -1,17 +1,22 @@
 import { CustomHttp } from "../services/custon-http.js";
+import { UrlManager } from "../utills/utills.js";
 import config from "../../config/config.js"
 
 export class Creation {
-    static idItm = null
     
     constructor(page){
         this.page=page;
+        this.idItm = null
+
+        this.routeParams = UrlManager.getQueryParams()
 
         this.categories =null
         this.categor = null
 
         this.input = document.getElementsByTagName('input')
+        this.itmType = document.getElementsByClassName('dropdown-item')
         this.id = document.location.href.split('=')[1]
+        this.test()
         
         if(this.page === 'create-ern'){
             this.createErn()
@@ -34,36 +39,27 @@ export class Creation {
         }
       
     }
+   
 
     createErn(){
         this.showTitle('Создание дохода', 'доход')
-        this.itmType('income')
+        this.itmTyp('income')
         let that = this
         create.onclick = function () {
-            that.savingData('income','/operations','POST')
+            
+            that.savingData(that.itmType[1].id,'income','/operations','POST')
         }
     }
     createCom(){
         this.showTitle('Создание расхода','расход')
-        this.itmType('expense')
+        this.itmTyp('expense')
         let that = this
         create.onclick = function () {
-            that.savingData('expense','/operations','POST')
+            that.idItm=that.itmType[1].id
+            that.savingData(that.itmType[1].id,'expense','/operations','POST')
         }
     }
-    showTitle(text, type ){
-        let input = this.input[0]
-        document.getElementById('content-title').innerText = text 
-        input.value = type 
-        input.setAttribute('disabled', 'disabled')
-    }
-    cancel(){
-        document.getElementById('cancel').onclick = function () {
-            document.getElementById('form')
-            location.href = '#/main-ernings-comsumption'
-        }
-    }
-   async itmType(data){
+    async itmTyp(data){
         try{
 
             const result = await CustomHttp.request(config.host+'/categories/'+data)
@@ -83,6 +79,18 @@ export class Creation {
             console.log(e)
         }
     }
+    showTitle(text, type ){
+        let input = this.input[0]
+        document.getElementById('content-title').innerText = text 
+        input.value = type 
+        input.setAttribute('disabled', 'disabled')
+    }
+    cancel(){
+        document.getElementById('cancel').onclick = function () {
+            document.getElementById('form')
+            location.href = '#/main-ernings-comsumption'
+        }
+    }
     searchType(){
         let that =this
 
@@ -95,11 +103,11 @@ export class Creation {
     })
         result.innerHTML = content
 
-        let itmType = document.getElementsByClassName('dropdown-item')
-        for(let i = 0; i<itmType.length;i++){
-            itmType[i].onclick = function () {
-                that.input[1].value = itmType[i].textContent
-                that.idItm=itmType[i].id
+
+        for(let i = 0; i<this.itmType.length;i++){
+            this.itmType[i].onclick = function () {
+                that.input[1].value = that.itmType[i].textContent
+                
             }
         }
     }
@@ -122,15 +130,14 @@ export class Creation {
         
 
     }
-
-    async savingData(type,url,metod){
+    async savingData(id,type,url,metod){
         try{
             const result = await CustomHttp.request(config.host+url,metod,{
                 type: type,
                 amount: this.input[2].value,
                 date: this.input[3].value,
                 comment: this.input[4].value,
-                category_id: this.idItm
+                category_id:  Number(id)
              })
 
              if(result){
@@ -147,7 +154,8 @@ export class Creation {
 
 
    async showEdit(){
-        let id = document.location.href.split('=')[1]
+   
+        let id = this.routeParams.id
 
         try{
             const result = await CustomHttp.request(config.host+'/operations/'+id, 'GET')
@@ -169,20 +177,47 @@ export class Creation {
         }
         console.log(id)
     }
+    editCategor(){
+        let idcategor=null
+        let type = this.routeParams.type
+        for(let i = 0;i<this.categories.length;i++){
+            if(this.categories[i].title===type){
+                idcategor= this.categories[i].id
+                break
+            }
+        }
+        return idcategor
+    }
     editErn(){
         let that = this
         this.showTitle('Редактирование дохода', 'доход')
+        this.itmTyp('income')
+    
         create.onclick = function () {
-            that.savingData('income','/operations/'+that.id,'PUT')
+            that.savingData(that.editCategor(),'income','/operations/'+that.id,'PUT')
         }
     }
     editCom(){
+        let that = this
         this.showTitle('Редактирование расхода','расход')
+        this.itmTyp('expense')
+
         create.onclick = function () {
-            that.savingData('expense','/operations/'+that.id,'PUT')
+            that.savingData(that.editCategor(),'expense','/operations/'+that.id,'PUT')
         }
     }
  
 
-
+test(){
+   let itmType = document.getElementById('dropdownMenuButton1')
+ 
+    itmType.addEventListener('change', function(e){
+        // if(e.target){
+        //     that.idDelite = e.target.getAttribute('value')
+        //     console.log(that.idDelite)
+        //     that.popapShow()
+        // }
+        console.log(e.target.itmType)
+    })
+}
 }
