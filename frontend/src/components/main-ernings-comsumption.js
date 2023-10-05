@@ -1,5 +1,6 @@
 import { CustomHttp } from "../services/custon-http.js";
 import { Popap } from "../utills/popap.js";
+import { Sidebar } from "../components/sidebar.js";
 import config from "../../config/config.js"
 
 
@@ -53,7 +54,7 @@ export class MainErnings{
             <td style="width:13%" class="px-0 text-center">${itm.category}</td>
             <td style="width:13%" class="px-0 text-center">${itm.amount}$</td>
             <td style="width:13%" class="px-0 text-center">${itm.date}</td>
-            <td style="width:30%" class="ps-5 py-3 text-start border-0">${itm.comment}</td>
+            <td style="width:30%" class="ps-5 py-3 text-start ">${itm.comment}</td>
             <td style="width:5%" class=" text-end">
             <span value="${itm.id}" class="me-2 delete">
                 <svg value="${itm.id}" width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -123,6 +124,8 @@ export class MainErnings{
                     throw new Error(result.message)
                 }
             this.int(this.interval)
+            var sidebar = new Sidebar()
+            sidebar.bal()
             }
         }catch(e){
             console.log(e)

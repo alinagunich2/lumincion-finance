@@ -54,7 +54,6 @@ export class Creation {
         this.itmTyp('expense')
         let that = this
         create.onclick = function () {
-            that.idItm=that.itmType[1].id
             that.savingData(that.saveCategor(that.input[1].value),'expense','/operations','POST')
         }
     }
@@ -164,7 +163,6 @@ export class Creation {
                     throw new Error(result.message)
                 }
                 this.categor = result
-                this.input[1].setAttribute('disabled', 'disabled')
                 this.input[1].value = this.categor.category
                 this.input[2].value = this.categor.amount 
                 this.input[3].value = this.categor.date
@@ -193,7 +191,7 @@ export class Creation {
         this.itmTyp('income')
     
         create.onclick = function () {
-            that.savingData(that.saveCategor(that.routeParams.type),'income','/operations/'+that.id,'PUT')
+            that.savingData(that.saveCategor(that.input[1].value),'income','/operations/'+that.id,'PUT')
         }
     }
     editCom(){
@@ -202,7 +200,7 @@ export class Creation {
         this.itmTyp('expense')
 
         create.onclick = function () {
-            that.savingData(that.saveCategor(that.routeParams.type),'expense','/operations/'+that.id,'PUT')
+            that.savingData(that.saveCategor(that.input[1].value),'expense','/operations/'+that.id,'PUT')
         }
     }
  

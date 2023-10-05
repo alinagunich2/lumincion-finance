@@ -2,7 +2,9 @@ import {Form} from './components/form.js'
 import {MainErnings} from './components/main-ernings-comsumption.js'
 import { Creation } from "../src/components/creation.js";
 import { Sidebar } from "../src/components/sidebar.js";
-import { Ernings } from "../src/components/ernings.js";
+import { Categories } from "../src/components/categories.js";
+import { CategoriesCreate } from "../src/components/categories-create.js";
+import { CategoriesEdit } from "../src/components/categories-edit.js";
 // import {Choice} from './components/choice.js'
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
@@ -47,7 +49,7 @@ export class Router{
              },
              {
                 route: '#/main-ernings-comsumption',
-                title:'main-ernings-comsumption',
+                title:'Доходы-Расходы',
                 template:'template/main-ernings-comsumption.html',
                 styles:'styles/main-ernings-comsumption.css',
                 load:()=>{
@@ -56,57 +58,102 @@ export class Router{
                 }
              },
              {
-                route: '#/category-use',
-                title:'category-use',
-                template:'template/category-use.html',
-                styles:'',
-                load:()=>{
-                    
-                }
-             },
-             {
                 route: '#/creation-ernings',
-                title:'creation',
+                title:'Создание доходов',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('create-ern')
+                    new Creation('create-ern'),
+                    new Sidebar('.tabs')
                 }
              },
              {
                 route: '#/creation-comsumption',
-                title:'creation',
+                title:'Создание расходов',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('create-com')
+                    new Creation('create-com'),
+                    new Sidebar('.tabs')
                 }
              },
              {
                 route: '#/edit-ernings',
-                title:'creation',
+                title:'Редактирование доходов',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('edit-ernings')
+                    new Creation('edit-ernings'),
+                    new Sidebar('.tabs')
                 }
              },
              {
                 route: '#/edit-comsumption',
-                title:'creation',
+                title:'Редактирование расходов',
                 template:'template/creation.html',
                 styles:'styles/creation.css',
                 load:()=>{
-                    new Creation('edit-comsumption')
+                    new Creation('edit-comsumption'),
+                    new Sidebar('.tabs')
                 }
              },
              {
                 route: '#/ernings',
-                title:'ernings',
+                title:'Катехории доходов',
                 template:'template/ernings-comsumption.html',
                 styles:'styles/ernings-comsumption.css',
                 load:()=>{
-                    new Ernings(),
+                    new Categories('ernings'),
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/comsuption',
+                title:'Категории расходов',
+                template:'template/ernings-comsumption.html',
+                styles:'styles/ernings-comsumption.css',
+                load:()=>{
+                    new Categories('comsuption'),
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/create-categ-ernings',
+                title:'Создание категории доходов',
+                template:'template/category-use.html',
+                styles:'',
+                load:()=>{
+                    new CategoriesCreate('ernings'),
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/create-categ-com',
+                title:'Создание категории расходов',
+                template:'template/category-use.html',
+                styles:'',
+                load:()=>{
+                    new CategoriesCreate('comsuption'),
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/edit-categ-ernings',
+                title:'Редактирование категории доходов',
+                template:'template/category-use.html',
+                styles:'',
+                load:()=>{
+                    new CategoriesEdit('ernings'),
+                    new Sidebar('.tabs')
+                }
+             },
+             {
+                route: '#/edit-categ-com',
+                title:'Редактирование категории расходов',
+                template:'template/category-use.html',
+                styles:'',
+                load:()=>{
+                    new CategoriesEdit('comsuption'),
                     new Sidebar('.tabs')
                 }
              },
