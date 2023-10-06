@@ -17,7 +17,7 @@ margin-bottom: 20px;
     margin-bottom: 60px;
 }
 input{
-    border: 1px solid rgba(206, 212, 218, 1) !important;
+    border: 1px solid rgba(206, 212, 218, 1) ;
 padding: 7px 0 7px 51px ;
 margin-bottom: 10px !important  ;
 display: block;
@@ -52,20 +52,20 @@ form img{
     border-radius: 3px 0 0 3px;
     left: 12.7px;
     }
-.img-fullname{   /* // */
-    top: 0.2px;
+.img-fullname{
+    top: 1px;
     left: 1px;
 }
-.img-email{           /* // */
-top: 51px;
+.img-email{
+top: 0.8px;
 left: 12.7px;
 }
 .img-lock{
-    top: 101px;           /* // */
+    top: 50.3px;
 padding: 11px 13px;
 }
- .img-rep-password{       /* // */
-    top: 150.5px;
+.img-rep-password{
+    top: 50.3px;
 padding: 11px 13px;
 }
 .remember input{

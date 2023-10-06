@@ -1,5 +1,5 @@
 import { CustomHttp } from "../services/custon-http.js";
-import config from "../../config/config.js"
+import configs from "../../config/configs.js"
 import { Popap } from "../utills/popap.js";
 
 
@@ -26,7 +26,7 @@ export class Categories{
     async int(type){
         try{
 
-            const result = await CustomHttp.request(config.host+'/categories/'+type)
+            const result = await CustomHttp.request(configs.host+'/categories/'+type)
                 
             if(result){
                 if(result.error){
@@ -73,7 +73,7 @@ export class Categories{
     async delete(type,itm){
         try{
 
-            const result = await CustomHttp.request(config.host+'/categories/'+type+'/'+itm, 'DELETE')
+            const result = await CustomHttp.request(configs.host+'/categories/'+type+'/'+itm, 'DELETE')
                 
             if(result){
                 if(result.error){

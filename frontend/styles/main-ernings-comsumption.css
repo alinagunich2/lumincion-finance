@@ -10,7 +10,8 @@ padding: 10px 0 40px 0 !important;
     border: 0px;
     border-radius: 0px;
     border-bottom:  1.5px solid #6c757d;
-    max-width: 38px;
+    max-width: 108px;
+    text-align: center;
     cursor: pointer;
     margin-top: 2px !important;
     font-family: "Roboto500";
@@ -60,4 +61,21 @@ margin-right: 20px;
 .period-activ{
     background: #6c757d;
     color: white;
+}
+
+.title-diagram{
+    font-family: "Roboto500";
+    font-size: 28px;
+    line-height: 33px;
+    color: rgba(41, 6, 97, 1);
+}
+.erning{
+    border-right: 1px solid rgba(217, 217, 217, 1);
+}
+.comsumpt{
+
+}
+.diagram{
+    max-width: 320px;
+    max-height: 320px;
 }

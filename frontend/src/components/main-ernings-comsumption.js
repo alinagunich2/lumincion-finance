@@ -1,7 +1,7 @@
 import { CustomHttp } from "../services/custon-http.js";
 import { Popap } from "../utills/popap.js";
-import { Sidebar } from "../components/sidebar.js";
-import config from "../../config/config.js"
+import { Balance } from "../utills/balanse.js";
+import configs from "../../config/configs.js"
 
 
 export class MainErnings{
@@ -25,7 +25,7 @@ export class MainErnings{
     async int(data = this.dateFromTo){
         try{
 
-            const result = await CustomHttp.request(config.host+'/operations?period=interval&dateFrom='+data)
+            const result = await CustomHttp.request(configs.host+'/operations?period=interval&dateFrom='+data)
                 
             if(result){
                 if(result.error){
@@ -117,15 +117,14 @@ export class MainErnings{
    async delete(itm){
         try{
 
-            const result = await CustomHttp.request(config.host+'/operations/'+itm, 'DELETE')
+            const result = await CustomHttp.request(configs.host+'/operations/'+itm, 'DELETE')
                 
             if(result){
                 if(result.error){
                     throw new Error(result.message)
                 }
             this.int(this.interval)
-            var sidebar = new Sidebar()
-            sidebar.bal()
+            new Balance().bal()
             }
         }catch(e){
             console.log(e)

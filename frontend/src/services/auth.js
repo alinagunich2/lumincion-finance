@@ -1,4 +1,4 @@
-import config from "../../config/config.js"
+import configs from "../../config/configs.js"
 
 export class Auth{
     static accessTokenKey='accessToken'
@@ -9,7 +9,7 @@ export class Auth{
         const refreshToken = localStorage.getItem(this.refreshTokenKey)
 
         if(refreshToken){
-            const response=await fetch(config.host+'/refresh',{
+            const response=await fetch(configs.host+'/refresh',{
                 method:"POST",
                 headers:{
                     'Content-type':'application/json',

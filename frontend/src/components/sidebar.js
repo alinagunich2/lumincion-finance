@@ -1,13 +1,8 @@
-import { CustomHttp } from "../services/custon-http.js";
-import config from "../../config/config.js"
+import { Balance } from "../utills/balanse.js";
 export class Sidebar {
     constructor(target, config) {
-      this.data = null
-      this.sumBalanse = 0
-      this.bal()
-      
-      
 
+      let balance = new Balance().bal()
 
 
       this.ern = document.getElementById('ern')
@@ -102,57 +97,8 @@ export class Sidebar {
 
 
 
-    async bal(){
-      try{
-
-          const result = await CustomHttp.request(config.host+'/operations?period=interval&dateFrom=1999-01-01&dateTo=2300-09-13')
-              
-          if(result){
-              if(result.error){
-                  throw new Error(result.message)
-              }
-
-              this.data = result
-              this.balanse()
-          }
-      }catch(e){
-          console.log(e)
-      }
-  }
-    balanse(){
-
-      let sumErn = 0
-      let sumCom = 0
-
-      this.data.forEach((itm)=>{
-          if(itm.type==='income'){
-            sumErn = sumErn+Number(itm.amount)
-            }else{
-                sumCom = sumCom+Number(itm.amount)
-            }
-        })
-      this.sumBalanse = sumErn-sumCom
-      document.getElementById('sum-balans').innerText = this.sumBalanse+'$'
-      return this.editBalanse()
-    }
-   async editBalanse(){
-      try{
-
-        const result = await CustomHttp.request(config.host+'/balance','PUT',{
-          newBalance: this.sumBalanse
-        })
-            
-        if(result){
-            if(result.error){
-                throw new Error(result.message)
-            }
-
-
-        }
-    }catch(e){
-        console.log(e)
-    }
-    }
+    
+   
   }
 
 

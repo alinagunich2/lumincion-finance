@@ -44,44 +44,7 @@ html,body{
     border-right: 1px solid rgba(13, 110, 253, 1);
 }
 
-.activ{
-    background-color: rgba(13, 110, 253, 1);
-    color: white;
-    border-radius: 5px;
-}
-.activ path {
-    fill: antiquewhite;
-}
 
-.activ-catiger{
-    background-color: rgba(13, 110, 253, 1);
-    color: white;
-    border-radius: 5px 5px 0 0;
-}
-.activ-ernings{
-    background-color: rgba(13, 110, 253, 1);
-    color: white;
-}
-
-.noactive-comsumotion,
-.activ-comsumotion{
-    border-bottom: 1px solid rgba(13, 110, 253, 1);
-    border-radius:  0 0 5px 5px;
-}
-.activ-comsumotion{       /* активировать расходы но при этом класс noactive-comsumotion отсается всегда в html */
-    background-color: rgba(13, 110, 253, 1);
-    color: white;
-}
-
-.btn-toggle::before{
-    position: absolute;
-    content: url(../static/img/ernings-comsumption/arrow-dark.svg) !important;
-    left: 152px;
-    top: 13px;
-}
-.btn-toggle[aria-expanded="true"]::before {
-    content: url(../static/img/ernings-comsumption/arrow-white.svg) !important;
-}
 /* -------------------------------------------------------------------------------------------------- */
 
 .balans{
@@ -168,4 +131,83 @@ line-height: 23px;
 color: rgba(41, 6, 97, 1);
 text-align: center;
 margin-bottom: 20px;
+}
+
+
+  .tabs__pane{
+    display: none;
+  }
+  .tabs__pane_show {
+    display: block;
+    opacity: 0;
+    animation: ani 1s forwards;
+  }
+
+  .tabs__btn {
+    
+    cursor: pointer;
+  }
+  
+  .tabs__btn_active {
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
+    border-radius: 5px;
+    cursor: default;
+    animation: ani 1s forwards;
+  }
+  @keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  .activ{
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
+    border-radius: 5px;
+}
+.activ path {
+    fill: antiquewhite ;
+}
+
+.tabs__btn_active path {
+    fill: antiquewhite;
+}
+.btn-toggle::before{
+    position: absolute;
+    content: url(../img/ernings-comsumption/arrow-dark.svg) !important;
+    left: 152px;
+    top: 13px;
+}
+.tabs__btn_active.btn-toggle{
+    border-radius: 5px 5px 0 0;
+}
+.tabs__btn_active.btn-toggle::before {
+    content: url(../img/ernings-comsumption/arrow-white.svg) !important;
+}
+
+/* .activ-catiger{
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
+    border-radius: 5px 5px 0 0;
+}
+.activ-ernings{
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
+}
+*/
+
+.noactive-comsumotion,
+.activ-comsumotion{
+    border-bottom: 1px solid rgba(13, 110, 253, 1);
+}
+.noactive-comsumotion{
+    border-radius:  0 0 5px 5px;
+}
+.activ-comsumotion{       /* активировать расходы но при этом класс noactive-comsumotion отсается всегда в html */
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
+} 
+
+.activ-ernings{
+    background-color: rgba(13, 110, 253, 1);
+    color: white;
 }

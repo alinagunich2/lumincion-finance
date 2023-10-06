@@ -1,6 +1,6 @@
 import { CustomHttp } from "../services/custon-http.js";
 import { UrlManager } from "../utills/utills.js";
-import config from "../../config/config.js"
+import configs from "../../config/configs.js"
 
 export class Creation {
     
@@ -60,7 +60,7 @@ export class Creation {
     async itmTyp(data){
         try{
 
-            const result = await CustomHttp.request(config.host+'/categories/'+data)
+            const result = await CustomHttp.request(configs.host+'/categories/'+data)
                 
             if(result){
                 if(result.error){
@@ -114,7 +114,7 @@ export class Creation {
         let create = document.getElementById('create')
 
         let y = false
-        for(let i = 0;i<this.input.length;i++){
+        for(let i = 0;i<this.input.length-1;i++){
             if(!that.input[i].value){
                 y = false
                 return
@@ -130,11 +130,11 @@ export class Creation {
     }
     async savingData(id,type,url,metod){
         try{
-            const result = await CustomHttp.request(config.host+url,metod,{
+            const result = await CustomHttp.request(configs.host+url,metod,{
                 type: type,
                 amount: this.input[2].value,
                 date: this.input[3].value,
-                comment: this.input[4].value,
+                comment: this.input[4].value ===true?this.input[4].value:' ',
                 category_id:  Number(id)
              })
 
@@ -156,7 +156,7 @@ export class Creation {
         let id = this.routeParams.id
 
         try{
-            const result = await CustomHttp.request(config.host+'/operations/'+id, 'GET')
+            const result = await CustomHttp.request(configs.host+'/operations/'+id, 'GET')
                 
             if(result){
                 if(result.error){

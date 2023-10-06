@@ -9,20 +9,20 @@
                             Вход
                         </h1>
                         <form class="position-relative">
-                            <input type="text" placeholder="Электронная почта" id="email" class="email rounded-1 w-100">
+                            <input id="email"  type="text" placeholder="Электронная почта" class="email rounded-1 w-100" >
                                 <img src="img/login-signup/mail.svg" alt="img-email" class="img-email position-absolute z-1">
-                            <input type="password" placeholder="Пароль" class="password  rounded-1 w-100 text-secondary">
+                            <input id="password" type="password" placeholder="Пароль" class="password  rounded-1 w-100 text-secondary">
                                 <img src="img/login-signup/lock.svg" alt="img-lock" class="img-lock position-absolute z-1">
                             
                             <label class="remember col-12 d-flex align-items-center justify-content-start" >
                                 <input type="checkbox" required="" class="">
                                 Запомнить меня
                             </label>
-                            <button class="button-signup btn btn-primary w-100" id="process" disabled>Войти</button>
+                            <button  type="button" class="button-signup btn btn-primary w-100" id="process" disabled>Войти</button>
                         </form>
                         <div class="form-link text-start d-flex">
                             <div class="me-2">Ещё нет аккаунта? </div>
-                            <div id="signUp" class="text-primary border-bottom border-primary">Пройдите регистрацию</div>
+                            <a href="/#/signup">Пройдите регистрацию</a>
                         </div>
                     </div>
                   </div>

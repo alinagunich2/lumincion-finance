@@ -1,5 +1,5 @@
 import { CustomHttp } from "../services/custon-http.js";
-import config from "../../config/config.js"
+import configs from "../../config/configs.js"
 
 export class CategoriesCreate{
     constructor(page){
@@ -60,7 +60,7 @@ export class CategoriesCreate{
     async createCategory(type, page){
         try{
 
-            const result = await CustomHttp.request(config.host+'/categories/'+type, 'POST',{
+            const result = await CustomHttp.request(configs.host+'/categories/'+type, 'POST',{
                 title: this.input[0].value,
             })
                 

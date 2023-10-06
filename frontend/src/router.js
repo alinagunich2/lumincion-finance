@@ -1,10 +1,12 @@
 import {Form} from './components/form.js'
+import {Main} from './components/main.js'
 import {MainErnings} from './components/main-ernings-comsumption.js'
 import { Creation } from "../src/components/creation.js";
 import { Sidebar } from "../src/components/sidebar.js";
 import { Categories } from "../src/components/categories.js";
 import { CategoriesCreate } from "../src/components/categories-create.js";
 import { CategoriesEdit } from "../src/components/categories-edit.js";
+import { Sort } from "../src/utills/sort.js";
 // import {Choice} from './components/choice.js'
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
@@ -44,7 +46,8 @@ export class Router{
                 template:'template/main.html',
                 styles:'styles/main-ernings-comsumption.css',
                 load:()=>{
-                    new Sidebar('.tabs')
+                    new Sidebar('.tabs'),
+                    new Main()
                 }
              },
              {

@@ -1,5 +1,5 @@
 import { CustomHttp } from "../services/custon-http.js";
-import config from "../../config/config.js"
+import configs from "../../config/configs.js"
 import { UrlManager } from "../utills/utills.js";
 
 
@@ -59,7 +59,7 @@ export class CategoriesEdit{
 
     async editData(type,page){
         try{
-            const result = await CustomHttp.request(config.host+'/categories/'+type+'/'+this.routeParams.id,'PUT',{
+            const result = await CustomHttp.request(configs.host+'/categories/'+type+'/'+this.routeParams.id,'PUT',{
                 title: this.input.value,
              })
 
