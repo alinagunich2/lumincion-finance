@@ -12,7 +12,7 @@
 <body>
     <section class="container-fluid m-0 p-0">
         <div class="d-flex">
-    <div class="saidbar d-flex flex-column flex-shrink-0  bg-white border-end" style="width: 219px; height: 100vh">
+    <div class="saidbar d-flex flex-column flex-shrink-0  bg-white border-end" style="width: 240px; height: 100vh">
         <a href="/" class="logo link-dark text-decoration-none border-bottom">
           <img src="img/logo.svg" alt="logo" width="98" height="40">
         </a>
@@ -59,15 +59,18 @@
         <div class="balans border-bottom">
           <p class="balans-text m-0">Баланс: &nbsp;&nbsp;<span id="sum-balans"></span></p>
         </div>
-            <div class="user d-flex align-items-center">
-              <img src="img/ernings-comsumption/icon-user.svg" alt="icon-user" class="user-img me-2">
-              <div class="user-title">RomanChernov</div>
-              <div class="user-arrow ms-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-triangle-fill" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M7.022 1.566a1.13 1.13 0 0 1 1.96 0l6.857 11.667c.457.778-.092 1.767-.98 1.767H1.144c-.889 0-1.437-.99-.98-1.767L7.022 1.566z"/>
-                </svg>
+            <div class="user align-items-center" id="user">
+              <div class="dropdown">
+                <div  class="  d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="img/ernings-comsumption/icon-user.svg" alt="icon-user" class="user-img me-2">
+                  <div class="user-title" id="user-title" ></div>
+                </div>
+                <ul class="dropdown-menu text-small shadow " >
+                  <li><a class="dropdown-item  py-0" href="#/logout">Logout</a></li>
+                </ul>
               </div>
             </div>
+            
       </div>
       
         <div class="content-categoty flex-shrink-0  bg-white m-0" style="width: 80%;">

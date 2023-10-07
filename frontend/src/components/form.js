@@ -142,6 +142,11 @@ async processForm(){
                             }
                             
                             Auth.setTokens(result.tokens.accessToken,result.tokens.refreshToken)
+                            Auth.setUserInfo({
+                                name: result.user.name,
+                                lastName: result.user.lastName,
+                                userId: result.user.id,
+                            })
                             location.href = '#/main'
                         }
                     }catch(e){

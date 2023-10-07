@@ -4,6 +4,18 @@ import configs from "../../config/configs.js"
 export class Main{
     constructor(){
         document.getElementById('main').classList.remove('activ')
+
+        let buttom = document.querySelectorAll('.period-button')
+        buttom.forEach((itm)=>{
+            itm.addEventListener('click', function(){
+                buttom.forEach((btn)=>{
+                    btn.style.backgroundColor='transparent'
+                    btn.style.color='#6c757d'
+                })
+                this.style.backgroundColor='#6c757d'
+                this.style.color='white'
+            })
+        })
         
 
         this.result = null

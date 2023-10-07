@@ -8,6 +8,17 @@ export class MainErnings{
     static  idDelite = null
     static  interval = null
      constructor(){
+        let buttom = document.querySelectorAll('.period-button')
+        buttom.forEach((itm)=>{
+            itm.addEventListener('click', function(){
+                buttom.forEach((btn)=>{
+                    btn.style.backgroundColor='transparent'
+                    btn.style.color='#6c757d'
+                })
+                this.style.backgroundColor='#6c757d'
+                this.style.color='white'
+            })
+        })
         this.data =null
 
         this.Month = new Date().getMonth()+1

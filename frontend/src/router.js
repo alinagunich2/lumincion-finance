@@ -11,13 +11,15 @@ import { Sort } from "../src/utills/sort.js";
 // import {Test} from './components/test.js'
 // import {Result} from './components/result.js'
 // import {GetResult} from './components/get-result.js'
-// import {Auth} from "./services/auth.js"
+import {Auth} from "./services/auth.js"
 export class Router{
     static id = null
     constructor(){
         this.boxElement=document.getElementById('box')
         this.stylesElement=document.getElementById('styles')
         this.titleElement=document.getElementById('page-title')
+        this.userTitleElement = document.getElementById('user-title')
+        this.userElement = document.getElementById('user')
         // this.profileElement=document.getElementById('profile')
         // this.profileFullNameElement=document.getElementById('profile-full-name')
         let that = this
@@ -166,11 +168,11 @@ export class Router{
     async openRoute(){
         const urlRoute = window.location.hash.split('?')[0]
 
-        // if(urlRoute==='#/logout'){
-        //     await Auth.logout()
-        //     window.location.href='#/'
-        //     return
-        // }
+        if(urlRoute==='#/logout'){
+            await Auth.logout()
+            window.location.href='#/'
+            return
+        }
 
         const newRoute = this.routes.find(item=>{
             return item.route === urlRoute
@@ -184,15 +186,15 @@ export class Router{
         this.stylesElement.setAttribute('href',newRoute.styles)
         this.titleElement.innerText = newRoute.title
 
-        // const userInfo = Auth.getUserInfo()
-        // const accessToken = localStorage.getItem(Auth.accessTokenKey)
+        const userInfo = Auth.getUserInfo()
+        const accessToken = localStorage.getItem(Auth.accessTokenKey)
 
-        // if(userInfo&&accessToken){
-        //     this.profileElement.style.display='flex'
-        //     this.profileFullNameElement.innerText=userInfo.fullName
-        // }else{
-        //     this.profileElement.style.display='none'
-        // }
+        if(userInfo&&accessToken){
+            this.userElement.style.display = 'flex'
+            this.userTitleElement.innerText = userInfo.name + ' '+userInfo.lastName
+        }else{
+            this.userElement.style.display = 'none'
+        }
 
         newRoute.load()
     }

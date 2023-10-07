@@ -3,7 +3,7 @@ import configs from "../../config/configs.js"
 export class Auth{
     static accessTokenKey='accessToken'
     static refreshTokenKey='refreshToken'
-    static userTokenKey='userInfo'
+    static userInfoKey='userInfo'
 
     static async processUnathorizedResponse(){
         const refreshToken = localStorage.getItem(this.refreshTokenKey)
@@ -27,9 +27,32 @@ export class Auth{
             }
         }
 
-        removeTokens()
+        this.removeTokens()
         location.href='#/'
         return false
+    }
+    static async logout(){
+        const refreshToken = localStorage.getItem(this.refreshTokenKey)
+
+        if(refreshToken){
+            const response=await fetch(configs.host+'/logout',{
+                method:"POST",
+                headers:{
+                    'Content-type':'application/json',
+                    'Accept':'application/json'
+                },
+                body:JSON.stringify({refreshToken:refreshToken})
+            })
+            if(response&&response.status===200){
+                const result = await response.json()
+
+                if(result && !result.error){
+                    Auth.removeTokens()
+                    localStorage.removeItem(Auth.userInfoKey)
+                    return true
+                }
+            }
+        }
     }
 
     static setTokens(accessToken,refreshToken){
@@ -40,5 +63,18 @@ export class Auth{
     static removeTokens(){
         localStorage.removeItem(this.accessTokenKey)
         localStorage.removeItem(this.refreshTokenKey)
+    }
+
+    static setUserInfo(info){
+        localStorage.setItem(this.userInfoKey,JSON.stringify(info))
+    }
+
+    static getUserInfo(){
+        const userInfo = localStorage.getItem(this.userInfoKey)
+        if(userInfo){
+            return JSON.parse(userInfo)
+        }
+
+        return null
     }
 }
